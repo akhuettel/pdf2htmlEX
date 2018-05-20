@@ -235,10 +235,10 @@ string CairoBackgroundRenderer::build_bitmap_path(int id)
     return string(html_renderer->str_fmt("%s/o%d.jpg", param.dest_dir.c_str(), id));
 }
 // Override CairoOutputDev::setMimeData() and dump bitmaps in SVG to external files.
-void CairoBackgroundRenderer::setMimeData(GfxState *state, Stream *str, Object *ref, GfxImageColorMap *colorMap, cairo_surface_t *image) {
+void CairoBackgroundRenderer::setMimeData(GfxState *state, Stream *str, Object *ref, GfxImageColorMap *colorMap, cairo_surface_t *image, int height) {
     if (param.svg_embed_bitmap)
     {
-        CairoOutputDev::setMimeData(state, str, ref, colorMap, image);
+        CairoOutputDev::setMimeData(state, str, ref, colorMap, image, height);
         return;
     }
 
