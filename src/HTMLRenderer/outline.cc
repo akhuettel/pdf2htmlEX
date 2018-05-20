@@ -33,7 +33,7 @@ void HTMLRenderer::process_outline_items(GooList * items)
         OutlineItem * item = (OutlineItem*)(items->get(i));
 
         string detail;
-        string dest = get_linkaction_str(item->getAction(), detail);
+        string dest = get_linkaction_str((LinkAction *)item->getAction(), detail);
 
         // we don't care dest is empty or not.
         f_outline.fs << "<li>" << "<a class=\"" << CSS::LINK_CN << "\" href=\"";
@@ -53,7 +53,7 @@ void HTMLRenderer::process_outline_items(GooList * items)
         item->open();
         if(item->hasKids())
         {
-            process_outline_items(item->getKids());
+            process_outline_items((GooList *)item->getKids());
         }
         item->close();
         f_outline.fs << "</li>";
@@ -68,7 +68,7 @@ void HTMLRenderer::process_outline()
     if(!outline)
         return;
 
-    process_outline_items(outline->getItems());
+    process_outline_items((GooList *)outline->getItems());
 }
 
 }// namespace pdf2htmlEX
